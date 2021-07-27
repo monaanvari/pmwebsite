@@ -17,6 +17,7 @@ import torch.onnx
 from torchvision.models import resnet
 
 import utils
+from transformer_net import TransformerNet
 from Network import *
 
 MYMAT="mymat"
@@ -32,7 +33,6 @@ template_folder = "/cvgl2/u/monaavr/nvidia_mdl_templates/nvidia/vMaterials"
 result_folder = "/cvgl2/u/monaavr/nvidia_mdl_templates/nvidia/vMaterials"
 allmats = open("data/vMaterials/matlist.txt").read().splitlines()
 DATA_PATH = "/cvgl/group/vMaterials2"
-
 
 def load_pm_model(model_path,args):
 
@@ -109,13 +109,9 @@ def render_prediction(samplepath):
         f.write("%s %s %s 1 0\n" % (command, mdlname, outname))
     try:
         os.remove(outname + ".ppm")
-
     except:
-        try:
-            os.remove(outname + "_lock.txt")
-        except:
-            print("could not find and delete cached .ppm file")
-            pass
+        print("could not find and delete cached .ppm file")
+        pass
 
     return outname + ".ppm"
 
@@ -132,6 +128,7 @@ def load_norm_ranges(fname):
     return normdict
 
 allranges = load_norm_ranges("%s/matlist_norm_ranges.txt" % DATA_PATH)
+
 
 def replace_mat_name(output, oldmat, newmat):
     count = 0

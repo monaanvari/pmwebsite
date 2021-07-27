@@ -1,3 +1,4 @@
+from google_drive_downloader import GoogleDriveDownloader as gdd
 import streamlit as st
 import os
 from PIL import Image
@@ -6,7 +7,6 @@ from torch.autograd import Variable
 import torch.nn as nn
 from torchvision.models import resnet
 import argparse
-from google_drive_downloader import GoogleDriveDownloader as gdd
 
 
 parser = argparse.ArgumentParser(description='Template-based parametric material prediction')
@@ -30,7 +30,7 @@ if img is not None:
 
 gdd.download_file_from_google_drive(file_id='1OHQmKb_d_xLrkdzYlo8_9Vf7F6IFIiiE',
                                     dest_path="saved_models/model_50.pth.tar",
-                                    unzip=False)
+                                    unzip=false)
 
 model = "saved_models/model_50.pth.tar"
 

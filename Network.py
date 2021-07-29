@@ -1,9 +1,14 @@
+'''
+credit: github.com/lynetcha
+'''
 import torch
 from torch.autograd import Variable
 import torch.nn as nn
 from torchvision.models import resnet
-from data_utils import ALLTYPES, MAX_TYPE_COUNT
 
+
+ALLTYPES = ['b', 'c', 'f', 'f2', 'f3']
+MAX_TYPE_COUNT = {'b':3, 'c':4, 'f':7, 'f2':3, 'f3':5}
 base_models = {'resnet50': (resnet.resnet50, 2048),
                'resnet34': (resnet.resnet34, 512),
                'resnet18': (resnet.resnet18, 512)}
